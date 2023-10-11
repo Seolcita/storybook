@@ -1,5 +1,7 @@
 import { type ReactElement } from 'react';
+
 import typographyTokens, { TypographyBasicProperties } from './token';
+import { ColorVariantMap, ColorVariants } from '../Color';
 
 type TypographyVariant =
   | 'headingXXL'
@@ -29,7 +31,7 @@ interface TypographyProps {
   children: React.ReactNode;
   variant: TypographyVariant;
   fontWeight?: FontWeight;
-  color?: string; //TODO: add color token
+  color?: ColorVariants;
 }
 
 interface TypographyStyleProperties extends TypographyBasicProperties {
@@ -105,7 +107,7 @@ const Typography = ({
     fontSize: typography.fontSize,
     lineHeight: typography.lineHeight,
     fontWeight: weight,
-    color,
+    color: ColorVariantMap[color],
   };
   const tag = getTag({ variant, children, customStyle });
 

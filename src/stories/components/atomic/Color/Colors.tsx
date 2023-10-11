@@ -1,4 +1,5 @@
 import { type ReactElement } from 'react';
+
 import { colors } from './token';
 import ColorPalette from './ColorPalette';
 import Typography from '../Typography';
@@ -143,27 +144,27 @@ const blackPalette = convertToObjArray({
 const Colors = (): ReactElement => {
   return (
     <>
-      <Typography variant='headingXS' fontWeight='bold'>
+      <Typography variant='headingXS' fontWeight='bold' color='primary'>
         # Primary
       </Typography>
       <ColorPalette colorList={primaryPalette} />
 
-      <Typography variant='headingXS' fontWeight='bold'>
+      <Typography variant='headingXS' fontWeight='bold' color='error'>
         # Error
       </Typography>
       <ColorPalette colorList={errorPalette} />
 
-      <Typography variant='headingXS' fontWeight='bold'>
+      <Typography variant='headingXS' fontWeight='bold' color='warning'>
         # Warning
       </Typography>
       <ColorPalette colorList={warningPalette} />
 
-      <Typography variant='headingXS' fontWeight='bold'>
+      <Typography variant='headingXS' fontWeight='bold' color='success'>
         # Success
       </Typography>
       <ColorPalette colorList={successPalette} />
 
-      <Typography variant='headingXS' fontWeight='bold'>
+      <Typography variant='headingXS' fontWeight='bold' color='grey'>
         # Grey
       </Typography>
       <ColorPalette colorList={greyPalette} />
