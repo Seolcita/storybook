@@ -1,6 +1,23 @@
-import { ColorPalette, ColorItem } from '@storybook/blocks';
+import { type ReactElement } from 'react';
 import { colors } from './token';
+import ColorPalette from './ColorPalette';
 import Typography from '../Typography';
+
+enum ColorGroups {
+  WHITE = 'WHITE',
+  BLACK = 'BLACK',
+  GREY = 'GREY',
+  PRIMARY = 'PRIMARY',
+  ERROR = 'ERROR',
+  WARNING = 'WARNING',
+  SUCCESS = 'SUCCESS',
+}
+
+interface ConvertToObjectArrayInput {
+  filter: ColorGroups;
+  colorKeysArray: string[];
+  colorValueArray: string[];
+}
 
 export type ColorVariants =
   | 'white'
@@ -61,59 +78,105 @@ export const ColorVariantMap: Record<ColorVariants, string> = {
   successDark: colors.greenDark.hex,
 };
 
-const colorArray = [];
 const colorKeys = Object.keys(ColorVariantMap);
 const colorValues = Object.values(ColorVariantMap);
 
-function convertToObjArray(
-  colorKeysArray: string[],
-  colorValueArray: string[]
-) {
+export const convertToObjArray = ({
+  filter,
+  colorKeysArray,
+  colorValueArray,
+}: ConvertToObjectArrayInput) => {
+  const colorArray = [];
   colorKeysArray.forEach((color, index) => {
-    const obj = {};
-    obj[color] = colorValueArray[index];
-    colorArray.push(obj);
+    console.log('log', color.startsWith(filter.toLowerCase()));
+    if (color.startsWith(filter.toLowerCase())) {
+      const obj = {};
+      obj[color] = colorValueArray[index];
+      colorArray.push(obj);
+    }
   });
-}
+  return colorArray;
+};
 
-convertToObjArray(colorKeys, colorValues);
+const greyPalette = convertToObjArray({
+  filter: ColorGroups.GREY,
+  colorKeysArray: colorKeys,
+  colorValueArray: colorValues,
+});
 
-const Colors = () => {
+const primaryPalette = convertToObjArray({
+  filter: ColorGroups.PRIMARY,
+  colorKeysArray: colorKeys,
+  colorValueArray: colorValues,
+});
+
+const errorPalette = convertToObjArray({
+  filter: ColorGroups.ERROR,
+  colorKeysArray: colorKeys,
+  colorValueArray: colorValues,
+});
+
+const warningPalette = convertToObjArray({
+  filter: ColorGroups.WARNING,
+  colorKeysArray: colorKeys,
+  colorValueArray: colorValues,
+});
+
+const successPalette = convertToObjArray({
+  filter: ColorGroups.SUCCESS,
+  colorKeysArray: colorKeys,
+  colorValueArray: colorValues,
+});
+
+const whitePalette = convertToObjArray({
+  filter: ColorGroups.WHITE,
+  colorKeysArray: colorKeys,
+  colorValueArray: colorValues,
+});
+
+const blackPalette = convertToObjArray({
+  filter: ColorGroups.BLACK,
+  colorKeysArray: colorKeys,
+  colorValueArray: colorValues,
+});
+
+const Colors = (): ReactElement => {
   return (
     <>
-      <div
-        style={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          width: '1000px',
-          height: '500px',
-        }}
-      >
-        {colorArray.map((color) => (
-          <div
-            style={{
-              width: '150px',
-              height: '100px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <div
-              style={{
-                borderRadius: '50%',
-                height: '50px',
-                width: '50px',
-                backgroundColor: Object.values(color),
-              }}
-            ></div>
-            <div style={{ textAlign: 'center' }}>
-              <Typography variant='textXS'>{Object.keys(color)}</Typography>
-            </div>
-          </div>
-        ))}
-      </div>
+      <Typography variant='headingXS' fontWeight='bold'>
+        # Primary
+      </Typography>
+      <ColorPalette colorList={primaryPalette} />
+
+      <Typography variant='headingXS' fontWeight='bold'>
+        # Error
+      </Typography>
+      <ColorPalette colorList={errorPalette} />
+
+      <Typography variant='headingXS' fontWeight='bold'>
+        # Warning
+      </Typography>
+      <ColorPalette colorList={warningPalette} />
+
+      <Typography variant='headingXS' fontWeight='bold'>
+        # Success
+      </Typography>
+      <ColorPalette colorList={successPalette} />
+
+      <Typography variant='headingXS' fontWeight='bold'>
+        # Grey
+      </Typography>
+      <ColorPalette colorList={greyPalette} />
+
+      <Typography variant='headingXS' fontWeight='bold'>
+        # White
+      </Typography>
+      <ColorPalette colorList={whitePalette} />
+
+      <Typography variant='headingXS' fontWeight='bold'>
+        # Black
+      </Typography>
+      <ColorPalette colorList={blackPalette} />
     </>
   );
 };

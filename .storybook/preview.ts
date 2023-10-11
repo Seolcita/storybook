@@ -10,6 +10,14 @@ const preview: Preview = {
       },
     },
     layout: 'centered',
+    backgrounds: {
+      default: 'white',
+      values: [
+        { name: 'lightBeige', value: '#f2e9e4' },
+        { name: 'darkGrey', value: '#212529' },
+        { name: 'white', value: '#ffffff' },
+      ],
+    },
   },
 };
 
