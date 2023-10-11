@@ -16,8 +16,6 @@ enum ColorGroups {
 
 interface ConvertToObjectArrayInput {
   filter: ColorGroups;
-  colorKeysArray: string[];
-  colorValueArray: string[];
 }
 
 export type ColorVariants =
@@ -79,66 +77,53 @@ export const ColorVariantMap: Record<ColorVariants, string> = {
   successDark: colors.greenDark.hex,
 };
 
+// Array of ColorVariantMap's keys - color variant names
 const colorKeys = Object.keys(ColorVariantMap);
+
+// Array of ColorVariantMap's values - color values
 const colorValues = Object.values(ColorVariantMap);
 
-export const convertToObjArray = ({
+// Converting into specific color object array with filter key word, colorKeys array and colorValues array
+export const convertToColorPalette = ({
   filter,
-  colorKeysArray,
-  colorValueArray,
 }: ConvertToObjectArrayInput) => {
   const colorArray = [];
-  colorKeysArray.forEach((color, index) => {
-    console.log('log', color.startsWith(filter.toLowerCase()));
+  colorKeys.forEach((color, index) => {
     if (color.startsWith(filter.toLowerCase())) {
       const obj = {};
-      obj[color] = colorValueArray[index];
+      obj[color] = colorValues[index];
       colorArray.push(obj);
     }
   });
   return colorArray;
 };
 
-const greyPalette = convertToObjArray({
+const greyPalette = convertToColorPalette({
   filter: ColorGroups.GREY,
-  colorKeysArray: colorKeys,
-  colorValueArray: colorValues,
 });
 
-const primaryPalette = convertToObjArray({
+const primaryPalette = convertToColorPalette({
   filter: ColorGroups.PRIMARY,
-  colorKeysArray: colorKeys,
-  colorValueArray: colorValues,
 });
 
-const errorPalette = convertToObjArray({
+const errorPalette = convertToColorPalette({
   filter: ColorGroups.ERROR,
-  colorKeysArray: colorKeys,
-  colorValueArray: colorValues,
 });
 
-const warningPalette = convertToObjArray({
+const warningPalette = convertToColorPalette({
   filter: ColorGroups.WARNING,
-  colorKeysArray: colorKeys,
-  colorValueArray: colorValues,
 });
 
-const successPalette = convertToObjArray({
+const successPalette = convertToColorPalette({
   filter: ColorGroups.SUCCESS,
-  colorKeysArray: colorKeys,
-  colorValueArray: colorValues,
 });
 
-const whitePalette = convertToObjArray({
+const whitePalette = convertToColorPalette({
   filter: ColorGroups.WHITE,
-  colorKeysArray: colorKeys,
-  colorValueArray: colorValues,
 });
 
-const blackPalette = convertToObjArray({
+const blackPalette = convertToColorPalette({
   filter: ColorGroups.BLACK,
-  colorKeysArray: colorKeys,
-  colorValueArray: colorValues,
 });
 
 const Colors = (): ReactElement => {
