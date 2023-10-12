@@ -11,25 +11,8 @@ export default meta;
 
 type Story = StoryObj<typeof Typography>;
 
-function decorator(): Story {
-  return {
-    decorators: [
-      (Story) => (
-        <div
-          style={{
-            display: 'block',
-          }}
-        >
-          <Story />
-        </div>
-      ),
-    ],
-  };
-}
-
 // heading
 export const HeadingXXL: Story = {
-  ...decorator(),
   args: {
     variant: 'headingXXL',
     fontWeight: 'normal',
@@ -38,7 +21,6 @@ export const HeadingXXL: Story = {
 };
 
 export const HeadingXL: Story = {
-  ...decorator(),
   args: {
     variant: 'headingXL',
     fontWeight: 'normal',
@@ -47,7 +29,6 @@ export const HeadingXL: Story = {
 };
 
 export const HeadingL: Story = {
-  ...decorator(),
   args: {
     variant: 'headingL',
     fontWeight: 'normal',
@@ -56,7 +37,6 @@ export const HeadingL: Story = {
 };
 
 export const HeadingM: Story = {
-  ...decorator(),
   args: {
     variant: 'headingM',
     fontWeight: 'normal',
@@ -65,7 +45,6 @@ export const HeadingM: Story = {
 };
 
 export const HeadingS: Story = {
-  ...decorator(),
   args: {
     variant: 'headingS',
     fontWeight: 'normal',
@@ -74,7 +53,6 @@ export const HeadingS: Story = {
 };
 
 export const HeadingXS: Story = {
-  ...decorator(),
   args: {
     variant: 'headingXS',
     fontWeight: 'normal',
