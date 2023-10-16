@@ -1,10 +1,3 @@
-import { ColorVariants } from '../Color';
-
-export type ButtonVariantProperties = {
-  border: string;
-  bgColor: ColorVariants;
-};
-
 export type ButtonSizeProperties = {
   margin: string;
   padding: string;
@@ -12,12 +5,6 @@ export type ButtonSizeProperties = {
   fontSize: string;
   fontWeight: number;
   lineHeight: string;
-};
-
-// Button variants
-
-const primary: ButtonVariantProperties = {
-  border: '1px solid',
 };
 
 // Button sizes
