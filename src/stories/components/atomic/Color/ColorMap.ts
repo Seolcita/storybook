@@ -12,9 +12,9 @@ export type Colors =
   | 'white'
   | 'black'
   | 'primary'
-  | 'error'
-  | 'warning'
   | 'success'
+  | 'warning'
+  | 'error'
   | 'grey';
 
 export const ColorMap: Record<Colors, ColorVariant> = {
