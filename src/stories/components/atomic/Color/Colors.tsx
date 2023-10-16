@@ -14,11 +14,11 @@ enum ColorGroups {
   SUCCESS = 'SUCCESS',
 }
 
-interface ConvertToObjectArrayInput {
+interface convertToColorPaletteInput {
   filter: ColorGroups;
 }
 
-export type ColorVariants =
+type ColorVariants =
   | 'white'
   | 'black'
   | 'greyBackground'
@@ -86,7 +86,7 @@ const colorValues = Object.values(ColorVariantMap);
 // Converting into specific color object array with filter key word, colorKeys array and colorValues array
 export const convertToColorPalette = ({
   filter,
-}: ConvertToObjectArrayInput) => {
+}: convertToColorPaletteInput) => {
   const colorArray = [];
   colorKeys.forEach((color, index) => {
     if (color.startsWith(filter.toLowerCase())) {

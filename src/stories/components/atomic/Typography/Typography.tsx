@@ -1,7 +1,7 @@
 import { type ReactElement } from 'react';
 
 import typographyTokens, { TypographyBasicProperties } from './token';
-import { ColorVariantMap, ColorVariants } from '../Color';
+import ColorMap, { Colors } from '../Color/ColorMap';
 
 type TypographyVariant =
   | 'headingXXL'
@@ -31,12 +31,12 @@ interface TypographyProps {
   children: React.ReactNode;
   variant: TypographyVariant;
   fontWeight?: FontWeight;
-  color?: ColorVariants;
+  color?: Colors;
 }
 
 interface TypographyStyleProperties extends TypographyBasicProperties {
   fontWeight: number;
-  color: string;
+  color?: string;
 }
 
 type Tag = {
@@ -85,7 +85,7 @@ const getTag = ({ variant, children, customStyle }: Tag): ReactElement => {
     return <h4 style={customStyle}>{children}</h4>;
   } else if (variant === 'headingS') {
     return <h5 style={customStyle}>{children}</h5>;
-  } else if (variant === ('headingXS' as TypographyVariant)) {
+  } else if (variant === 'headingXS') {
     return <h6 style={customStyle}>{children}</h6>;
   } else if (variant.startsWith('text')) {
     return <p style={customStyle}>{children}</p>;
@@ -107,7 +107,7 @@ const Typography = ({
     fontSize: typography.fontSize,
     lineHeight: typography.lineHeight,
     fontWeight: weight,
-    color: ColorVariantMap[color],
+    color: ColorMap[color].main,
   };
   const tag = getTag({ variant, children, customStyle });
 
