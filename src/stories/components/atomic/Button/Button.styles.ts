@@ -1,60 +1,87 @@
 import styled, { css } from 'styled-components';
 import { ButtonProps } from '.';
 import { ButtonSizeProperties } from './token';
+import ColorMap, { ColorVariant } from '../Color/ColorMap';
 
 interface StyledButtonProps {
   variant: ButtonProps['variant'];
-  bgColor: string;
-  textColor: ButtonProps['textColor'];
+  bgColor: ColorVariant;
+  textColor: ColorVariant;
   size: ButtonSizeProperties;
   fullWidth: ButtonProps['fullWidth'];
   disabled: ButtonProps['disabled'];
 }
 
-interface ButtonSVGProps {
-  startSVG?: boolean;
-  endSVG?: boolean;
-}
-
 export const StyledButton = styled.button<StyledButtonProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: ${({ variant, bgColor }) =>
-    variant === 'primary' ? bgColor : 'transparent'};
-  border: ${({ variant, bgColor }) =>
-    variant === 'primary' ? 'none' : `1px solid ${bgColor}`};
+    variant === 'primary' ? bgColor.main : 'transparent'};
+
+  border: ${({ variant, textColor }) =>
+    variant === 'primary' ? 'none' : `2.5px solid ${textColor.main}`};
   border-radius: 5px;
-  color: ${({ textColor }) => textColor};
-  box-shadow: ${({ bgColor }) => `0 0 5px ${bgColor}80`};
-  margin: ${({ size }) => size.margin}
-  padding:${({ size }) => size.padding}
-  font-size:${({ size }) => size.fontSize}
-  height:${({ size }) => size.heigh}
-  font-weight: ${({ size }) => size.fontWeight}
-  line-height: ${({ size }) => size.lineHeight}
+  color: ${({ textColor }) => textColor.main};
+  box-shadow: ${({ variant, bgColor, textColor }) =>
+    variant === 'primary'
+      ? `3px 4px 4px ${bgColor.main}80`
+      : `3px 4px 4px ${textColor.main}80`};
+  margin: ${({ size }) => size.margin};
+  padding: ${({ size }) => size.padding};
+  font-size: ${({ size }) => size.fontSize};
+  height: ${({ size }) => size.heigh};
+  font-weight: ${({ size }) => size.fontWeight};
+  line-height: ${({ size }) => size.lineHeight};
+  letter-spacing: 0.3px;
   ${({ fullWidth }) =>
     fullWidth &&
     css`
       width: 100%;
-    `}
+    `};
+
+  &:hover {
+    background-color: ${({ variant, bgColor }) =>
+      variant === 'primary' ? bgColor.dark : 'transparent'};
+    box-shadow: ${({ variant, bgColor, textColor }) =>
+      variant === 'primary'
+        ? `6px 6px 8px ${bgColor.main}80`
+        : `6px 6px 8px ${textColor.main}80`};
+  }
+
+  &:active {
+    box-shadow: ${({ variant, bgColor, textColor }) =>
+      variant === 'primary'
+        ? `2px 3px 3px ${bgColor.main}E6`
+        : `2px 3px 3px ${textColor.main}E6`};
+    transform: scale(0.98);
+  }
+
   ${({ disabled }) =>
     disabled &&
     css`
       cursor: not-allowed;
+      background-color: ${ColorMap['grey'].extraLight};
+      box-shadow: none;
+      color: ${ColorMap['grey'].light};
+      &:hover,
+      &:active {
+        background-color: ${ColorMap['grey'].extraLight};
+        box-shadow: none;
+        transform: none;
+      }
     `}
 
-  &: hover {
-    opacity: 0.9;
-    box-shadow: ${({ bgColor }) => `0 0 20px ${bgColor}E6`};
-  }
-
-  &: active {
-    box-shadow: ${({ bgColor }) => `0 0 10px ${bgColor}E6`};
-    transform: scale(0.98);
-  }
-`;
-
-export const ButtonSVG = styled.svg<ButtonSVGProps>`
-  width: 30px;
-  height: 30px;
-  margin-right: ${({ startSVG }) => (startSVG ? '30px' : '0px')};
-  margin-left: ${({ endSVG }) => (endSVG ? '30px' : '0px')};
+  ${({ disabled, variant }) =>
+    disabled &&
+    variant === 'outlined' &&
+    css`
+      background-color: transparent;
+      border-color: ${ColorMap['grey'].extraLight};
+      color: lightgrey;
+      &:hover,
+      &:active {
+        background-color: transparent;
+      }
+    `}
 `;

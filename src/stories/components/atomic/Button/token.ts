@@ -10,7 +10,7 @@ export type ButtonSizeProperties = {
 // Button sizes
 const buttonXS: ButtonSizeProperties = {
   margin: '0px',
-  padding: '8px 12px',
+  padding: '8px 22px',
   fontSize: '14px',
   heigh: '36px',
   fontWeight: 600,
@@ -19,7 +19,7 @@ const buttonXS: ButtonSizeProperties = {
 
 const buttonS: ButtonSizeProperties = {
   margin: '0px',
-  padding: '10px 14px',
+  padding: '10px 24px',
   heigh: '40px',
   fontSize: '14px',
   fontWeight: 600,
@@ -28,7 +28,7 @@ const buttonS: ButtonSizeProperties = {
 
 const buttonM: ButtonSizeProperties = {
   margin: '0px',
-  padding: '10px 16px',
+  padding: '10px 26px',
   heigh: '44px',
   fontSize: '16px',
   fontWeight: 600,
@@ -37,7 +37,7 @@ const buttonM: ButtonSizeProperties = {
 
 const buttonL: ButtonSizeProperties = {
   margin: '0px',
-  padding: '12px 18px',
+  padding: '12px 30px',
   heigh: '48px',
   fontSize: '16px',
   fontWeight: 600,
@@ -46,7 +46,7 @@ const buttonL: ButtonSizeProperties = {
 
 const buttonXL: ButtonSizeProperties = {
   margin: '0px',
-  padding: '16px 22px',
+  padding: '16px 40px',
   heigh: '60px',
   fontSize: '18px',
   fontWeight: 600,
