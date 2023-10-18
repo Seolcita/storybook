@@ -5,6 +5,11 @@ import { Box } from '@mui/material';
 const meta: Meta<typeof Button> = {
   title: 'Components/Atomic/Button',
   component: Button,
+  parameters: {
+    controls: {
+      exclude: ['variant', 'fullWidth'],
+    },
+  },
 };
 
 export default meta;
@@ -28,7 +33,6 @@ export const Primary: Story = {
   args: {
     variant: 'primary',
     textColor: 'white',
-    bgColor: 'primary',
     children: 'Button',
   },
 };
