@@ -4,7 +4,7 @@ export interface ColorVariant {
   background?: string;
   extraLight?: string;
   light?: string;
-  main?: string;
+  main: string;
   dark?: string;
 }
 
