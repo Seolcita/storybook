@@ -37,6 +37,8 @@ interface TypographyProps {
 interface TypographyStyleProperties extends TypographyBasicProperties {
   fontWeight: number;
   color?: string;
+  margin: string | number;
+  padding: string | number;
 }
 
 type Tag = {
@@ -108,6 +110,8 @@ const Typography = ({
     lineHeight: typography.lineHeight,
     fontWeight: weight,
     color: ColorMap[color].main,
+    margin: 0,
+    padding: 0,
   };
   const tag = getTag({ variant, children, customStyle });
 

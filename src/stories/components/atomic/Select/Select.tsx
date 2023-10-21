@@ -4,8 +4,15 @@ import {
   DropdownContainer,
   SelectInputContainer,
   SelectOption,
+  SelectedItem,
   StyledSelect,
+  DeleteItemIcon,
 } from './Select.styles';
+import { Box } from '@mui/material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
+import Typography from '../Typography';
+import ColorMap from '../Color/ColorMap';
 
 export type Option = {
   label: string;
@@ -18,7 +25,7 @@ type SingleSelectProps = {
   onChange: (value: Option) => void;
 };
 
-type MultipleSelectProps = {
+export type MultipleSelectProps = {
   multiple: true;
   value?: Option[];
   onChange: (value: Option[]) => void;
@@ -35,6 +42,8 @@ const Select = ({
   onChange,
 }: SelectProps): ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState<number>();
+  const [highlightedIndexes, setHighlightedIndexes] = useState<number[]>([]);
 
   const selectOption = (option: Option): void => {
     if (multiple) {
@@ -48,6 +57,34 @@ const Select = ({
     }
   };
 
+  const setHighlight = (index: number) => {
+    if (multiple) {
+      if (highlightedIndexes.includes(index)) {
+        setHighlightedIndexes(
+          highlightedIndexes.filter((idx) => idx !== index)
+        );
+      } else {
+        setHighlightedIndexes([...highlightedIndexes, index]);
+      }
+    } else {
+      setHighlightedIndex(index);
+    }
+  };
+
+  const isHighlighted = (index: number): boolean => {
+    let result = false;
+    if (multiple) {
+      if (highlightedIndexes.includes(index)) {
+        result = true;
+      }
+    } else {
+      if (index === highlightedIndex) {
+        result = true;
+      }
+    }
+    return result;
+  };
+
   return (
     <>
       <StyledSelect
@@ -55,29 +92,80 @@ const Select = ({
         onClick={() => setIsOpen((prev) => !prev)}
         tabIndex={0}
       >
-        <SelectInputContainer>
-          {multiple
-            ? value
-              ? value.map((val) => <button>{val.label}</button>)
-              : 'Select Options'
-            : value
-            ? value.label
-            : 'Select Option'}
-
-          <Caret>{isOpen ? 'ᗋ' : 'ᗊ'}</Caret>
+        <SelectInputContainer isOpen={isOpen} multiple={multiple}>
+          <Box
+            display='flex'
+            flexDirection='row'
+            alignItems='center'
+            flexGrow={1}
+          >
+            {multiple ? (
+              value ? (
+                value.map((val) => (
+                  <SelectedItem>
+                    <Box
+                      display='flex'
+                      flexDirection='row'
+                      alignItems='center'
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        selectOption(val);
+                        setIsOpen(false);
+                      }}
+                    >
+                      <Typography variant='textXS' fontWeight='semiBold'>
+                        {val.label}
+                      </Typography>
+                      <DeleteItemIcon>&times;</DeleteItemIcon>
+                    </Box>
+                  </SelectedItem>
+                ))
+              ) : (
+                <Typography
+                  variant='textM'
+                  fontWeight='semiBold'
+                  color='primary'
+                >
+                  Select Options
+                </Typography>
+              )
+            ) : value ? (
+              <Typography variant='textM' fontWeight='semiBold' color='primary'>
+                {value.label}
+              </Typography>
+            ) : (
+              <Typography variant='textM' fontWeight='semiBold' color='primary'>
+                Select Option
+              </Typography>
+            )}
+          </Box>
+          <Caret isOpen={isOpen}>
+            <FontAwesomeIcon
+              icon={faCaretDown}
+              size='lg'
+              style={{ color: ColorMap['primary'].main }}
+            />
+          </Caret>
         </SelectInputContainer>
+
         <DropdownContainer isOpen={isOpen}>
           <ul>
-            {options.map((option) => (
+            {options.map((option, index) => (
               <SelectOption
                 key={option.value}
+                delayTime={index * 0.3}
+                isOpen={isOpen}
                 onClick={(e) => {
                   e.stopPropagation();
                   selectOption(option);
                   setIsOpen(false);
+                  setHighlight(index);
                 }}
+                highlighted={isHighlighted(index)}
               >
-                {option.label}
+                <Typography variant='textM' color='primary'>
+                  {option.label}
+                </Typography>
               </SelectOption>
             ))}
           </ul>

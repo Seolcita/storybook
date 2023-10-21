@@ -1,13 +1,30 @@
 import { Box } from '@mui/material';
 import styled from 'styled-components';
-import ColorMap from '../Color/ColorMap';
+import ColorMap, { Colors } from '../Color/ColorMap';
+import { MultipleSelectProps } from '.';
 
 interface StyledSelectProps {
   isOpen: boolean;
 }
 
-interface SelectInputContainer {
+interface SelectInputContainerProps {
+  isOpen: StyledSelectProps['isOpen'];
+  multiple: MultipleSelectProps['multiple'];
   borderColor?: string;
+}
+
+interface CaretProps {
+  isOpen: boolean;
+}
+
+interface CaretIconProps {
+  color: Colors;
+}
+
+interface SelectOptionProps {
+  isOpen: boolean;
+  delayTime?: number;
+  highlighted: boolean;
 }
 
 interface DropdownContainerProps {
@@ -21,41 +38,81 @@ export const StyledSelect = styled(Box)<StyledSelectProps>`
   position: relative;
 `;
 
-export const SelectInputContainer = styled(Box)<SelectInputContainer>`
+export const SelectInputContainer = styled(Box)<SelectInputContainerProps>`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  height: 40px;
+  min-height: 40px;
+  max-height: ${({ multiple }) => !multiple && `40px`};
   padding: 10px 20px;
-  border: ${() => `2px solid ${ColorMap['primary'].main}`};
+  border: ${({ isOpen }) =>
+    isOpen
+      ? `2px solid ${ColorMap['primary'].main}`
+      : `2px solid ${ColorMap['primary'].extraLight}`};
   border-radius: 4px;
-`;
+  width: 100%;
+  color: ${() => ColorMap['primary'].dark};
 
-export const Caret = styled.button`
-  border: none;
-  background-color: transparent;
-`;
-
-export const DropdownContainer = styled(Box)<DropdownContainerProps>`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
-  top: 43px;
-  left: 0;
-  position: absolute;
-  width: 300px;
-  z-index: 100;
-  border-radius: 4px;
-  box-shadow: ${() => `2px 2px 6px ${ColorMap['primary'].main}80`};
-
-  & > ul {
-    margin: 10px 0;
-    padding: 0;
+  &:hover {
+    border: ${() => `2px solid ${ColorMap['primary'].main}`};
   }
 `;
 
-export const SelectOption = styled.li`
-  background-color: white;
-  padding: 10px 20px;
-  color: ${() => ColorMap['primary'].main};
+export const SelectedItem = styled.button`
+  display: flex;
+  background-color: ${() => ColorMap['grey'].extraLight};
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin: 0 5px;
+
+  &:hover {
+    background-color: ${() => ColorMap['grey'].light};
+  }
+`;
+
+export const DeleteItemIcon = styled.span`
+  font-size: 20px;
+  padding-left: 10px;
+`;
+
+export const Caret = styled.button<CaretProps>`
+  border: none;
+  background-color: transparent;
+  transform: ${({ isOpen }) => isOpen && `rotate(-180deg)`};
+  transition-duration: 1s;
+`;
+
+export const CaretIcon = styled.img<CaretIconProps>`
+  color: ${({ color }) => ColorMap[color].main};
+  width: 20px;
+  height: 20px;
+`;
+
+export const DropdownContainer = styled(Box)<DropdownContainerProps>`
+  display: flex;
+  justify-content: center;
+  visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
+  width: 100%;
+  border-radius: 4px;
+  overflow: hidden;
+
+  & > ul {
+    width: 98%;
+    padding: 10px; 0
+    overflow: hidden;
+    box-shadow: ${() => `2px 2px 6px ${ColorMap['primary'].main}80`};
+    transform: ${({ isOpen }) =>
+      isOpen ? 'translateY(-5%)' : 'translateY(-130%)'};
+    transition: 1s;
+    transition-timing-function: ease;
+  }
+`;
+
+export const SelectOption = styled.li<SelectOptionProps>`
+  padding: 5px 10px;
+  color: ${() => ColorMap['primary'].dark};
+  background-color: ${({ highlighted }) =>
+    highlighted ? ColorMap['primary'].background : 'transparent'};
 
   &:hover {
     background-color: ${() => ColorMap['primary'].background};
@@ -65,5 +122,3 @@ export const SelectOption = styled.li`
     background-color: ${() => ColorMap['primary'].extraLight};
   }
 `;
-
-// display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
