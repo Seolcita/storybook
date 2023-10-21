@@ -1,59 +1,62 @@
 import { Box } from '@mui/material';
 import styled from 'styled-components';
-import ColorMap, { Colors } from '../Color/ColorMap';
-import { MultipleSelectProps } from '.';
+import ColorMap, { ColorVariant } from '../Color/ColorMap';
+import { MultipleSelectProps, SelectProps } from '.';
 
 interface StyledSelectProps {
   isOpen: boolean;
+  width: SelectProps['width'];
+  fullWidth: SelectProps['fullWidth'];
 }
 
 interface SelectInputContainerProps {
   isOpen: StyledSelectProps['isOpen'];
   multiple: MultipleSelectProps['multiple'];
+  selectColor: ColorVariant;
   borderColor?: string;
 }
 
 interface CaretProps {
-  isOpen: boolean;
-}
-
-interface CaretIconProps {
-  color: Colors;
-}
-
-interface SelectOptionProps {
-  isOpen: boolean;
-  delayTime?: number;
-  highlighted: boolean;
+  isOpen: StyledSelectProps['isOpen'];
 }
 
 interface DropdownContainerProps {
   isOpen: StyledSelectProps['isOpen'];
+  selectColor: ColorVariant;
+}
+
+interface SelectOptionProps {
+  isOpen: StyledSelectProps['isOpen'];
+  delayTime?: number;
+  highlighted: boolean;
+  selectColor: ColorVariant;
 }
 
 export const StyledSelect = styled(Box)<StyledSelectProps>`
   display: flex;
   flex-direction: column;
-  width: 300px;
   position: relative;
+  width: ${({ width, fullWidth }) => (fullWidth ? '100%' : `${width}px`)};
 `;
 
 export const SelectInputContainer = styled(Box)<SelectInputContainerProps>`
   display: flex;
   align-items: center;
+  min-width: 300px;
   min-height: 40px;
   max-height: ${({ multiple }) => !multiple && `40px`};
   padding: 10px 20px;
-  border: ${({ isOpen }) =>
+  border: ${({ isOpen, selectColor }) =>
     isOpen
-      ? `2px solid ${ColorMap['primary'].main}`
-      : `2px solid ${ColorMap['primary'].extraLight}`};
+      ? `2px solid ${selectColor.main}`
+      : `2px solid ${selectColor.extraLight}`};
   border-radius: 4px;
   width: 100%;
-  color: ${() => ColorMap['primary'].dark};
+  color: ${({ selectColor }) => selectColor.dark};
+  background-color: ${() => ColorMap['white'].main};
 
   &:hover {
-    border: ${() => `2px solid ${ColorMap['primary'].main}`};
+    border: ${({ selectColor }) => `2px solid ${selectColor.main}`};
   }
 `;
 
@@ -77,15 +80,10 @@ export const DeleteItemIcon = styled.span`
 
 export const Caret = styled.button<CaretProps>`
   border: none;
-  background-color: transparent;
+  background-color: ${() => ColorMap['white'].main};
   transform: ${({ isOpen }) => isOpen && `rotate(-180deg)`};
   transition-duration: 1s;
-`;
-
-export const CaretIcon = styled.img<CaretIconProps>`
-  color: ${({ color }) => ColorMap[color].main};
-  width: 20px;
-  height: 20px;
+  margin-left: 10px;
 `;
 
 export const DropdownContainer = styled(Box)<DropdownContainerProps>`
@@ -93,14 +91,14 @@ export const DropdownContainer = styled(Box)<DropdownContainerProps>`
   justify-content: center;
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};
   width: 100%;
-  border-radius: 4px;
   overflow: hidden;
 
   & > ul {
     width: 98%;
-    padding: 10px; 0
+    padding: 10px;
     overflow: hidden;
-    box-shadow: ${() => `2px 2px 6px ${ColorMap['primary'].main}80`};
+    border-radius: 4px;
+    box-shadow: ${({ selectColor }) => `2px 2px 6px ${selectColor.main}80`};
     transform: ${({ isOpen }) =>
       isOpen ? 'translateY(-5%)' : 'translateY(-130%)'};
     transition: 1s;
@@ -111,14 +109,14 @@ export const DropdownContainer = styled(Box)<DropdownContainerProps>`
 export const SelectOption = styled.li<SelectOptionProps>`
   padding: 5px 10px;
   color: ${() => ColorMap['primary'].dark};
-  background-color: ${({ highlighted }) =>
-    highlighted ? ColorMap['primary'].background : 'transparent'};
+  background-color: ${({ highlighted, selectColor }) =>
+    highlighted ? selectColor.background : ColorMap['white'].main};
 
   &:hover {
-    background-color: ${() => ColorMap['primary'].background};
+    background-color: ${({ selectColor }) => selectColor.background};
   }
 
   &:active {
-    background-color: ${() => ColorMap['primary'].extraLight};
+    background-color: ${({ selectColor }) => selectColor.extraLight};
   }
 `;

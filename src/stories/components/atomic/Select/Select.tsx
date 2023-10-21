@@ -12,7 +12,7 @@ import { Box } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import Typography from '../Typography';
-import ColorMap from '../Color/ColorMap';
+import ColorMap, { Colors } from '../Color/ColorMap';
 
 export type Option = {
   label: string;
@@ -31,8 +31,11 @@ export type MultipleSelectProps = {
   onChange: (value: Option[]) => void;
 };
 
-type SelectProps = {
+export type SelectProps = {
   options: Option[];
+  width: number;
+  fullWidth?: boolean;
+  color?: Colors;
 } & (SingleSelectProps | MultipleSelectProps);
 
 const Select = ({
@@ -40,10 +43,15 @@ const Select = ({
   value,
   multiple,
   onChange,
+  width,
+  fullWidth = false,
+  color = 'primary',
 }: SelectProps): ReactElement => {
   const [isOpen, setIsOpen] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState<number>();
   const [highlightedIndexes, setHighlightedIndexes] = useState<number[]>([]);
+
+  const selectColor = ColorMap[color];
 
   const selectOption = (option: Option): void => {
     if (multiple) {
@@ -91,8 +99,14 @@ const Select = ({
         onBlur={() => setIsOpen(false)}
         onClick={() => setIsOpen((prev) => !prev)}
         tabIndex={0}
+        width={width}
+        fullWidth={fullWidth}
       >
-        <SelectInputContainer isOpen={isOpen} multiple={multiple}>
+        <SelectInputContainer
+          isOpen={isOpen}
+          multiple={multiple}
+          selectColor={selectColor}
+        >
           <Box
             display='flex'
             flexDirection='row'
@@ -113,7 +127,7 @@ const Select = ({
                         setIsOpen(false);
                       }}
                     >
-                      <Typography variant='textXS' fontWeight='semiBold'>
+                      <Typography variant='textS' fontWeight='semiBold'>
                         {val.label}
                       </Typography>
                       <DeleteItemIcon>&times;</DeleteItemIcon>
@@ -122,7 +136,7 @@ const Select = ({
                 ))
               ) : (
                 <Typography
-                  variant='textM'
+                  variant='textS'
                   fontWeight='semiBold'
                   color='primary'
                 >
@@ -130,11 +144,11 @@ const Select = ({
                 </Typography>
               )
             ) : value ? (
-              <Typography variant='textM' fontWeight='semiBold' color='primary'>
+              <Typography variant='textS' fontWeight='semiBold' color='primary'>
                 {value.label}
               </Typography>
             ) : (
-              <Typography variant='textM' fontWeight='semiBold' color='primary'>
+              <Typography variant='textS' fontWeight='semiBold' color='primary'>
                 Select Option
               </Typography>
             )}
@@ -143,12 +157,12 @@ const Select = ({
             <FontAwesomeIcon
               icon={faCaretDown}
               size='lg'
-              style={{ color: ColorMap['primary'].main }}
+              style={{ color: selectColor.main }}
             />
           </Caret>
         </SelectInputContainer>
 
-        <DropdownContainer isOpen={isOpen}>
+        <DropdownContainer isOpen={isOpen} selectColor={selectColor}>
           <ul>
             {options.map((option, index) => (
               <SelectOption
@@ -162,8 +176,9 @@ const Select = ({
                   setHighlight(index);
                 }}
                 highlighted={isHighlighted(index)}
+                selectColor={selectColor}
               >
-                <Typography variant='textM' color='primary'>
+                <Typography variant='textS' color='primary'>
                   {option.label}
                 </Typography>
               </SelectOption>
