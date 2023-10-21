@@ -1,7 +1,6 @@
-import { Box } from '@mui/material';
 import styled from 'styled-components';
 import ColorMap, { ColorVariant } from '../Color/ColorMap';
-import { MultipleSelectProps, SelectProps } from '.';
+import { SelectProps } from '.';
 
 interface StyledSelectProps {
   isOpen: boolean;
@@ -11,7 +10,6 @@ interface StyledSelectProps {
 
 interface SelectInputContainerProps {
   isOpen: StyledSelectProps['isOpen'];
-  multiple: MultipleSelectProps['multiple'];
   selectColor: ColorVariant;
   borderColor?: string;
 }
@@ -32,19 +30,18 @@ interface SelectOptionProps {
   selectColor: ColorVariant;
 }
 
-export const StyledSelect = styled(Box)<StyledSelectProps>`
+export const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
   position: relative;
   width: ${({ width, fullWidth }) => (fullWidth ? '100%' : `${width}px`)};
 `;
 
-export const SelectInputContainer = styled(Box)<SelectInputContainerProps>`
+export const SelectInputContainer = styled.div<SelectInputContainerProps>`
   display: flex;
   align-items: center;
-  min-width: 300px;
+  min-width: 250px;
   min-height: 40px;
-  max-height: ${({ multiple }) => !multiple && `40px`};
   padding: 10px 20px;
   border: ${({ isOpen, selectColor }) =>
     isOpen
@@ -60,24 +57,6 @@ export const SelectInputContainer = styled(Box)<SelectInputContainerProps>`
   }
 `;
 
-export const SelectedItem = styled.button`
-  display: flex;
-  background-color: ${() => ColorMap['grey'].extraLight};
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin: 0 5px;
-
-  &:hover {
-    background-color: ${() => ColorMap['grey'].light};
-  }
-`;
-
-export const DeleteItemIcon = styled.span`
-  font-size: 20px;
-  padding-left: 10px;
-`;
-
 export const Caret = styled.button<CaretProps>`
   border: none;
   background-color: ${() => ColorMap['white'].main};
@@ -86,7 +65,7 @@ export const Caret = styled.button<CaretProps>`
   margin-left: 10px;
 `;
 
-export const DropdownContainer = styled(Box)<DropdownContainerProps>`
+export const DropdownContainer = styled.div<DropdownContainerProps>`
   display: flex;
   justify-content: center;
   visibility: ${({ isOpen }) => (isOpen ? 'visible' : 'hidden')};

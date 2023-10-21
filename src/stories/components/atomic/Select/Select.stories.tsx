@@ -1,16 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Select, { Option } from '.';
 import { useState } from 'react';
 import { Box } from '@mui/material';
 
-const meta: Meta<typeof Select> = {
+export default {
   title: 'Components/Atomic/Select',
   component: Select,
 };
-
-export default meta;
-
-type Story = StoryObj<typeof Select>;
 
 const selectOptions = [
   { label: 'Cold', value: 'Cold' },
@@ -18,33 +14,29 @@ const selectOptions = [
   { label: 'Hot', value: 'Hot' },
 ];
 
-export const SingleSelect: Story = () => {
-  const [value, setValue] = useState<Option>();
+const Template: any = (args: any) => {
+  const [value, setValue] = useState<Option | undefined>();
 
   return (
     <Box width={600} display='flex' justifyContent='center' alignItems='center'>
       <Select
-        options={selectOptions}
+        {...args}
         value={value}
-        onChange={(opt) => setValue(opt)}
-        multiple={false}
-        width={200}
+        options={selectOptions}
+        onChange={(opt: Option) => setValue(opt)}
       />
     </Box>
   );
 };
 
-export const MultiSelect: Story = () => {
-  const [value, setValue] = useState<Option[]>();
+export const Default = Template.bind({});
+Default.args = {
+  color: 'primary',
+  width: 250,
+};
 
-  return (
-    <>
-      <Select
-        options={selectOptions}
-        value={value}
-        onChange={(opt) => setValue(opt)}
-        multiple={true}
-      />
-    </>
-  );
+export const FullWidth = Template.bind({});
+FullWidth.args = {
+  color: 'primary',
+  fullWidth: true,
 };
