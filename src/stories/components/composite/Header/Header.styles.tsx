@@ -49,16 +49,13 @@ export const Logo = styled.div<LogoProps>`
       flex-grow: 1;
     `}
 `;
-export const LeftMenus = styled.div`
-  // background-color: purple;
-`;
-
 export const RightMenus = styled.div`
   background-color: red;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
 `;
+
 export const LoginButton = styled.div`
   background-color: green;
 `;

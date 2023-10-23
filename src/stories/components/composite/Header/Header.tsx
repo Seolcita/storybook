@@ -12,7 +12,7 @@ export interface HeaderProps {
   logo: React.ReactNode;
   leftMenus?: React.ReactNode;
   rightMenus?: React.ReactNode;
-  login: React.ReactNode;
+  isLogin: boolean;
   isMobile?: boolean;
   bgColor?: Colors;
   loginButton: React.ReactNode;
@@ -24,7 +24,7 @@ const Header = ({
   rightMenus,
   isMobile = false,
   bgColor,
-  login,
+  isLogin,
   loginButton,
 }: HeaderProps): ReactElement => {
   return (
@@ -33,7 +33,7 @@ const Header = ({
         <Logo isMobile={isMobile}>{logo}</Logo>
         {isMobile && leftMenus}
       </LeftContainer>
-      <RightContainer>{login ? rightMenus : loginButton}</RightContainer>
+      <RightContainer>{isLogin ? rightMenus : loginButton}</RightContainer>
     </StyledHeader>
   );
 };

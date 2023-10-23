@@ -9,6 +9,9 @@ import { Placeholder } from '../../utils/placeholder';
 const meta: Meta<typeof Header> = {
   title: 'Components/Composite/Header',
   component: Header,
+  parameters: {
+    layout: 'padded',
+  },
 };
 
 export default meta;
@@ -59,9 +62,8 @@ const loginButtonPlaceholder = (
 );
 
 export const Default: Story = {
-  ...storyDecorator(960),
   args: {
-    login: true,
+    isLogin: true,
     logo,
     leftMenus: leftMenusPlaceHolder,
     rightMenus: rightMenusPlaceHolder,
@@ -74,7 +76,7 @@ export const Mobile: Story = {
   ...storyDecorator(375),
   args: {
     isMobile: true,
-    login: true,
+    isLogin: true,
     logo,
     leftMenus: leftMenusPlaceHolder,
     rightMenus: rightMenusPlaceHolder,
@@ -84,9 +86,8 @@ export const Mobile: Story = {
 };
 
 export const LoginStatus: Story = {
-  ...storyDecorator(960),
   args: {
-    login: true,
+    isLogin: true,
     logo,
     leftMenus: leftMenusPlaceHolder,
     rightMenus: rightMenusPlaceHolder,
@@ -96,9 +97,8 @@ export const LoginStatus: Story = {
 };
 
 export const LogoutStatus: Story = {
-  ...storyDecorator(960),
   args: {
-    login: false,
+    isLogin: false,
     logo,
     leftMenus: leftMenusPlaceHolder,
     rightMenus: rightMenusPlaceHolder,
