@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import { ButtonProps } from '.';
-import { ButtonSizeProperties } from './token';
+import { ButtonSizeProperties } from '../../../tokens/button-token';
 import ColorMap, { ColorVariant } from '../Color/ColorMap';
 
 interface StyledButtonProps {

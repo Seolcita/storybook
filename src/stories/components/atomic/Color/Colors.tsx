@@ -1,6 +1,6 @@
 import { type ReactElement } from 'react';
 
-import { colors } from './token';
+import { colors } from '../../../tokens/color-token';
 import ColorPalette from './ColorPalette';
 import Typography from '../Typography';
 
@@ -14,9 +14,13 @@ enum ColorGroups {
   SUCCESS = 'SUCCESS',
 }
 
-interface convertToColorPaletteInput {
+interface ConvertToColorPaletteInput {
   filter: ColorGroups;
 }
+
+export type ColorArray = {
+  [key: string]: string;
+};
 
 type ColorVariants =
   | 'white'
@@ -86,11 +90,11 @@ const colorValues = Object.values(ColorVariantMap);
 // Converting into specific color object array with filter key word, colorKeys array and colorValues array
 export const convertToColorPalette = ({
   filter,
-}: convertToColorPaletteInput) => {
-  const colorArray = [];
+}: ConvertToColorPaletteInput): ColorArray[] => {
+  const colorArray: ColorArray[] = [];
   colorKeys.forEach((color, index) => {
     if (color.startsWith(filter.toLowerCase())) {
-      const obj = {};
+      const obj: ColorArray = {};
       obj[color] = colorValues[index];
       colorArray.push(obj);
     }

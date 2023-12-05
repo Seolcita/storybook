@@ -1,6 +1,8 @@
 import { type ReactElement } from 'react';
 
-import typographyTokens, { TypographyBasicProperties } from './token';
+import typographyTokens, {
+  TypographyBasicProperties,
+} from '../../../tokens/typography-token';
 import ColorMap, { Colors } from '../Color/ColorMap';
 
 type TypographyVariant =
