@@ -10,6 +10,9 @@ const meta: Meta<typeof Button> = {
       exclude: ['variant', 'fullWidth'],
     },
   },
+  argTypes: {
+    onClick: { action: 'clicked' },
+  },
 };
 
 export default meta;
@@ -138,4 +141,8 @@ export const OutlinedButtonColorGrey: Story = {
 
 export const OutlinedButtonColorBlack: Story = {
   args: { variant: 'outlined', textColor: 'black', children: 'Button' },
+};
+
+export const OutlinedButtonColorWhite: Story = {
+  args: { variant: 'outlined', textColor: 'white', children: 'Button' },
 };

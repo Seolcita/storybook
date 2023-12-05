@@ -89,7 +89,6 @@ const Select = ({
           {options.map((option, index) => (
             <SelectOption
               key={option.value}
-              delayTime={index * 0.3}
               isOpen={isOpen}
               onClick={(e) => {
                 e.stopPropagation();

@@ -1,4 +1,4 @@
-import { colors } from './token';
+import { colors } from '../../../tokens/color-token';
 
 export interface ColorVariant {
   background?: string;

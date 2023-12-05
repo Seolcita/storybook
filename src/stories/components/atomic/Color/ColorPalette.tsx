@@ -1,10 +1,11 @@
 import { type ReactElement } from 'react';
-
-import Typography from '../Typography';
 import { Box } from '@mui/material';
 
+import { ColorArray } from './Colors';
+import Typography from '../Typography';
+
 interface ColorPaletteProps {
-  colorList: [];
+  colorList: ColorArray[];
 }
 
 const ColorPalette = ({ colorList }: ColorPaletteProps): ReactElement => {

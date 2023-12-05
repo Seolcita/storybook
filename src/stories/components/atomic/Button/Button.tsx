@@ -1,6 +1,8 @@
 import { type ReactElement } from 'react';
 
-import buttonTokens, { ButtonSizeProperties } from './token';
+import buttonTokens, {
+  ButtonSizeProperties,
+} from '../../../tokens/button-token';
 import { StyledButton } from './Button.styles';
 import ColorMap, { Colors } from '../Color/ColorMap';
 
@@ -23,6 +25,7 @@ export interface ButtonProps {
   fullWidth?: boolean;
   disabled?: boolean;
   children: React.ReactNode;
+  onClick?: React.MouseEventHandler;
 }
 
 const Button = ({
@@ -32,6 +35,7 @@ const Button = ({
   size = 'm',
   fullWidth = false,
   disabled = false,
+  onClick,
   children,
 }: ButtonProps): ReactElement => {
   return (
@@ -42,6 +46,7 @@ const Button = ({
       size={ButtonSizeMap[size]}
       fullWidth={fullWidth}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </StyledButton>

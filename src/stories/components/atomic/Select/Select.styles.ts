@@ -25,7 +25,6 @@ interface DropdownContainerProps {
 
 interface SelectOptionProps {
   isOpen: StyledSelectProps['isOpen'];
-  delayTime?: number;
   highlighted: boolean;
   selectColor: ColorVariant;
 }
@@ -82,6 +81,7 @@ export const DropdownContainer = styled.div<DropdownContainerProps>`
       isOpen ? 'translateY(-5%)' : 'translateY(-130%)'};
     transition: 1s;
     transition-timing-function: ease;
+    background-color: ${() => ColorMap['white'].main};
   }
 `;
 
