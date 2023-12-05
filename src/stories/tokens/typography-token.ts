@@ -21,69 +21,69 @@ export type TypographyBasicProperties = {
 // heading
 const headingXXL: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '72px',
-  lineHeight: '90px',
+  fontSize: '7.2rem',
+  lineHeight: '9rem',
 };
 
 const headingXL: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '60px',
-  lineHeight: '90px',
+  fontSize: '6rem',
+  lineHeight: '9rem',
 };
 
 const headingL: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '48px',
-  lineHeight: '60px',
+  fontSize: '4.8rem',
+  lineHeight: '6rem',
 };
 
 const headingM: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '36px',
-  lineHeight: '44px',
+  fontSize: '3.6rem',
+  lineHeight: '4.4rem',
 };
 
 const headingS: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '30px',
-  lineHeight: '38px',
+  fontSize: '3rem',
+  lineHeight: '3.8rem',
 };
 
 const headingXS: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '20px',
-  lineHeight: '30px',
+  fontSize: '2rem',
+  lineHeight: '3rem',
 };
 
 // text
 const textXL: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '20px',
-  lineHeight: '30px',
+  fontSize: '2rem',
+  lineHeight: '3rem',
 };
 
 const textL: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '18px',
-  lineHeight: '28px',
+  fontSize: '1.8rem',
+  lineHeight: '2.8rem',
 };
 
 const textM: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '16px',
-  lineHeight: '24px',
+  fontSize: '1.6rem',
+  lineHeight: '2.4rem',
 };
 
 const textS: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '14px',
-  lineHeight: '20px',
+  fontSize: '1.4rem',
+  lineHeight: '2rem',
 };
 
 const textXS: TypographyBasicProperties = {
   fontFamily: FontFamily,
-  fontSize: '12px',
-  lineHeight: '18px',
+  fontSize: '1.2rem',
+  lineHeight: '1.8rem',
 };
 
 export default {

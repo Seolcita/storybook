@@ -6,16 +6,16 @@ interface Size {
 }
 
 const size = {
-  sm: 600,
-  md: 960,
-  lg: 1440,
+  sm: 60,
+  md: 96,
+  lg: 150,
 };
 
 export const device: Size = {
-  xs: `screen and (width < ${size.sm}px)`, // phone
-  sm: `screen and (width < ${size.md}px )`, // tablet
-  md: `screen and (width < ${size.lg}px )`, // laptop
-  lg: `screen and (${size.lg}px <= width)`, // desktop
+  xs: `screen and (width < ${size.sm}rem)`, // phone
+  sm: `screen and (width < ${size.md}rem)`, // tablet
+  md: `screen and (width < ${size.lg}rem)`, // laptop
+  lg: `screen and (${size.lg}rem <= width)`, // desktop
 };
 
 export const isMobile = window.innerWidth < size.sm;

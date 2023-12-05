@@ -32,7 +32,7 @@ const Template: any = (args: any) => {
 export const Default = Template.bind({});
 Default.args = {
   color: 'primary',
-  width: 250,
+  width: 25,
 };
 
 export const FullWidth = Template.bind({});

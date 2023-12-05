@@ -21,7 +21,7 @@ function storyDecorator(width: number): Story {
   return {
     decorators: [
       (Story) => (
-        <Box width={`${width}px`}>
+        <Box width={`${width}rem`}>
           <Story />
         </Box>
       ),
@@ -85,7 +85,7 @@ export const ExtraLarge: Story = {
 };
 
 export const FullWidth: Story = {
-  ...storyDecorator(630),
+  ...storyDecorator(63),
   args: { fullWidth: true, textColor: 'white', children: 'Button' },
 };
 

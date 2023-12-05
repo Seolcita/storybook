@@ -20,20 +20,20 @@ export const StyledButton = styled.button<StyledButtonProps>`
     variant === 'primary' ? bgColor.main : 'transparent'};
 
   border: ${({ variant, textColor }) =>
-    variant === 'primary' ? 'none' : `2.5px solid ${textColor.main}`};
-  border-radius: 5px;
+    variant === 'primary' ? 'none' : `0.25rem solid ${textColor.main}`};
+  border-radius: 0.5rem;
   color: ${({ textColor }) => textColor.main};
   box-shadow: ${({ variant, bgColor, textColor }) =>
     variant === 'primary'
-      ? `3px 4px 4px ${bgColor.main}80`
-      : `3px 4px 4px ${textColor.main}80`};
+      ? `0.3rem 0.4rem 0.4rem ${bgColor.main}80`
+      : `0.3rem 0.4rem 0.4rem ${textColor.main}80`};
   margin: ${({ size }) => size.margin};
   padding: ${({ size }) => size.padding};
   font-size: ${({ size }) => size.fontSize};
   height: ${({ size }) => size.heigh};
   font-weight: ${({ size }) => size.fontWeight};
   line-height: ${({ size }) => size.lineHeight};
-  letter-spacing: 0.3px;
+  letter-spacing: 0.03rem;
   ${({ fullWidth }) =>
     fullWidth &&
     css`
@@ -45,15 +45,15 @@ export const StyledButton = styled.button<StyledButtonProps>`
       variant === 'primary' ? bgColor.dark : 'transparent'};
     box-shadow: ${({ variant, bgColor, textColor }) =>
       variant === 'primary'
-        ? `6px 6px 8px ${bgColor.main}80`
-        : `6px 6px 8px ${textColor.main}80`};
+        ? `0.6rem 0.6rem 0.8rem ${bgColor.main}80`
+        : `0.6rem 0.6rem 0.8rem ${textColor.main}80`};
   }
 
   &:active {
     box-shadow: ${({ variant, bgColor, textColor }) =>
       variant === 'primary'
-        ? `2px 3px 3px ${bgColor.main}E6`
-        : `2px 3px 3px ${textColor.main}E6`};
+        ? `0.2rem 0.3rem 0.3rem ${bgColor.main}E6`
+        : `0.2rem 0.3rem 0.3rem ${textColor.main}E6`};
     transform: scale(0.98);
   }
 

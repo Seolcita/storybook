@@ -20,7 +20,7 @@ function storyDecorator(width: number): Story {
   return {
     decorators: [
       (Story) => (
-        <Box width={`${width}px`}>
+        <Box width={`${width}rem`}>
           <Story />
         </Box>
       ),
@@ -32,7 +32,7 @@ type Story = StoryObj<typeof Header>;
 
 const logo = (
   <Box display='flex' flexDirection='row' alignItems='center'>
-    <Placeholder label='Logo' borderRadius={5} width={200} />
+    <Placeholder label='Logo' borderRadius={0.5} width={20} />
   </Box>
 );
 
@@ -41,7 +41,7 @@ const leftMenusPlaceHolder = (
     display='flex'
     flexDirection='row'
     alignItems='center'
-    marginRight={'5px'}
+    marginRight={'0.5rem'}
   >
     <FontAwesomeIcon icon={faBars} size='xl' style={{ color: '#ffffff' }} />
   </Box>
@@ -57,7 +57,7 @@ const rightMenusPlaceHolder = (
 
 const loginButtonPlaceholder = (
   <Box display='flex' flexDirection='row' alignItems='center'>
-    <Placeholder label='Login' borderRadius={5} width={200} />
+    <Placeholder label='Login' borderRadius={0.5} width={20} />
   </Box>
 );
 
@@ -73,7 +73,7 @@ export const Default: Story = {
 };
 
 export const Mobile: Story = {
-  ...storyDecorator(375),
+  ...storyDecorator(37.5),
   args: {
     isMobile: true,
     isLogin: true,

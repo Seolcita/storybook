@@ -9,6 +9,13 @@ export const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
+html {
+  // Sets a baseline font size of 10px,
+  // 1rem = 10px
+  // 10px/16px = 62.5%
+  font-size: 62.5%;
+}
+
 body {
   margin: 0;
   padding: 0;
