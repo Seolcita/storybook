@@ -13,21 +13,25 @@ const ColorPalette = ({ colorList }: ColorPaletteProps): ReactElement => {
     <Box display='flex' flexWrap='wrap'>
       {colorList.map((color) => (
         <Box
-          width='150px'
-          height='150px'
+          width='15rem'
+          height='15rem'
           display='flex'
           flexDirection='column'
           justifyContent='start'
           alignItems='center'
+          marginBottom='2.5rem'
         >
           <Box
             borderRadius='20%'
-            height='50px'
-            width='50px'
+            height='5rem'
+            width='5rem'
             bgcolor={Object.values(color)}
+            marginTop='2.5rem'
           ></Box>
-          <Box textAlign='center'>
-            <Typography variant='textXS'>{Object.keys(color)}</Typography>
+          <Box textAlign='center' marginTop='1rem'>
+            <Typography variant='textXS' fontWeight='semiBold'>
+              {Object.keys(color)}
+            </Typography>
             <Typography variant='textXS'>{Object.values(color)}</Typography>
           </Box>
         </Box>

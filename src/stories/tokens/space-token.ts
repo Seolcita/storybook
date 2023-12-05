@@ -9,11 +9,11 @@ export type Space = {
 };
 
 export const space: Space = {
-  xs: '2px',
-  s: '4px',
-  m: '8px',
-  l: '16px',
-  xl: '32px',
-  xxl: '64px',
+  xs: '0.2rem',
+  s: '0.4rem',
+  m: '0.8rem',
+  l: '1.6rem',
+  xl: '3.2rem',
+  xxl: '6.4rem',
   none: '0',
 };

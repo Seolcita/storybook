@@ -33,26 +33,26 @@ export const StyledSelect = styled.div<StyledSelectProps>`
   display: flex;
   flex-direction: column;
   position: relative;
-  width: ${({ width, fullWidth }) => (fullWidth ? '100%' : `${width}px`)};
+  width: ${({ width, fullWidth }) => (fullWidth ? '100%' : `${width}rem`)};
 `;
 
 export const SelectInputContainer = styled.div<SelectInputContainerProps>`
   display: flex;
   align-items: center;
-  min-width: 250px;
-  min-height: 40px;
-  padding: 10px 20px;
+  min-width: 25rem;
+  min-height: 4rem;
+  padding: 1rem 2rem;
   border: ${({ isOpen, selectColor }) =>
     isOpen
-      ? `2px solid ${selectColor.main}`
-      : `2px solid ${selectColor.extraLight}`};
-  border-radius: 4px;
+      ? `0.2rem solid ${selectColor.main}`
+      : `0.2rem solid ${selectColor.extraLight}`};
+  border-radius: 0.4rem;
   width: 100%;
   color: ${({ selectColor }) => selectColor.dark};
   background-color: ${() => ColorMap['white'].main};
 
   &:hover {
-    border: ${({ selectColor }) => `2px solid ${selectColor.main}`};
+    border: ${({ selectColor }) => `0.2rem solid ${selectColor.main}`};
   }
 `;
 
@@ -61,7 +61,7 @@ export const Caret = styled.button<CaretProps>`
   background-color: ${() => ColorMap['white'].main};
   transform: ${({ isOpen }) => isOpen && `rotate(-180deg)`};
   transition-duration: 1s;
-  margin-left: 10px;
+  margin-left: 1rem;
 `;
 
 export const DropdownContainer = styled.div<DropdownContainerProps>`
@@ -73,10 +73,11 @@ export const DropdownContainer = styled.div<DropdownContainerProps>`
 
   & > ul {
     width: 98%;
-    padding: 10px;
+    padding: 1rem;
     overflow: hidden;
-    border-radius: 4px;
-    box-shadow: ${({ selectColor }) => `2px 2px 6px ${selectColor.main}80`};
+    border-radius: 0.4rem;
+    box-shadow: ${({ selectColor }) =>
+      `0.2rem 0.2rem 0.6rem ${selectColor.main}80`};
     transform: ${({ isOpen }) =>
       isOpen ? 'translateY(-5%)' : 'translateY(-130%)'};
     transition: 1s;
@@ -86,7 +87,7 @@ export const DropdownContainer = styled.div<DropdownContainerProps>`
 `;
 
 export const SelectOption = styled.li<SelectOptionProps>`
-  padding: 5px 10px;
+  padding: 0.5rem 1rem;
   color: ${() => ColorMap['primary'].dark};
   background-color: ${({ highlighted, selectColor }) =>
     highlighted ? selectColor.background : ColorMap['white'].main};

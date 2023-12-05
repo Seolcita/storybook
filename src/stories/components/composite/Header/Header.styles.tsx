@@ -21,8 +21,8 @@ export const StyledHeader = styled.div<StyledHeaderProps>`
   flex-direction: row;
   justify-content: space-between;
   width: 100%;
-  max-width: 1500px;
-  padding: 5px 10px;
+  max-width: 150rem;
+  padding: 0.5rem 1rem;
 `;
 export const LeftContainer = styled.div<LeftContainerProps>`
   display: flex;

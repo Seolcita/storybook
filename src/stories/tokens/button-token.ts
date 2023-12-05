@@ -9,48 +9,48 @@ export type ButtonSizeProperties = {
 
 // Button sizes
 const buttonXS: ButtonSizeProperties = {
-  margin: '0px',
-  padding: '8px 22px',
-  fontSize: '14px',
-  heigh: '36px',
+  margin: '0rem',
+  padding: '0.8rem 2.2rem',
+  fontSize: '1.4rem',
+  heigh: '3.6rem',
   fontWeight: 600,
-  lineHeight: '20px',
+  lineHeight: '2rem',
 };
 
 const buttonS: ButtonSizeProperties = {
-  margin: '0px',
-  padding: '10px 24px',
-  heigh: '40px',
-  fontSize: '14px',
+  margin: '0rem',
+  padding: '1rem 2.4rem',
+  heigh: '4rem',
+  fontSize: '1.4rem',
   fontWeight: 600,
-  lineHeight: '20px',
+  lineHeight: '2rem',
 };
 
 const buttonM: ButtonSizeProperties = {
-  margin: '0px',
-  padding: '10px 26px',
-  heigh: '44px',
-  fontSize: '16px',
+  margin: '0rem',
+  padding: '1rem 2.6rem',
+  heigh: '4.4rem',
+  fontSize: '1.6rem',
   fontWeight: 600,
-  lineHeight: '24px',
+  lineHeight: '2.4rem',
 };
 
 const buttonL: ButtonSizeProperties = {
-  margin: '0px',
-  padding: '12px 30px',
-  heigh: '48px',
-  fontSize: '16px',
+  margin: '0rem',
+  padding: '1.2rem 3rem',
+  heigh: '4.8rem',
+  fontSize: '1.6rem',
   fontWeight: 600,
-  lineHeight: '24px',
+  lineHeight: '2.4rem',
 };
 
 const buttonXL: ButtonSizeProperties = {
-  margin: '0px',
-  padding: '16px 40px',
-  heigh: '60px',
-  fontSize: '18px',
+  margin: '0rem',
+  padding: '1.6rem 4rem',
+  heigh: '6rem',
+  fontSize: '1.8rem',
   fontWeight: 600,
-  lineHeight: '28px',
+  lineHeight: '2.8rem',
 };
 
 export default { buttonXS, buttonS, buttonM, buttonL, buttonXL };

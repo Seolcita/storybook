@@ -20,19 +20,19 @@ type StyledPlaceholderProps = {
 
 export const StyledPlaceholder = styled.div<StyledPlaceholderProps>`
 background-color: ${({ bgcolor }) => bgcolor.extraLight};
-width: ${({ width }) => `${width}px`}
-height: ${({ height }) => `${height}px`}
-border: ${({ bgcolor }) => `1px solid ${bgcolor.main}`};
-border-radius: ${({ borderRadius }) => `${borderRadius}px`};
-padding: 10px;
-margin: 5px;
+width: ${({ width }) => `${width}rem`}
+height: ${({ height }) => `${height}rem`}
+border: ${({ bgcolor }) => `0.1rem solid ${bgcolor.main}`};
+border-radius: ${({ borderRadius }) => `${borderRadius}rem`};
+padding: 1rem;
+margin: 0.5rem;
 `;
 
 function Placeholder({
   color = 'grey',
-  height = 30,
-  width = 30,
-  borderRadius = 30,
+  height = 0.3,
+  width = 0.3,
+  borderRadius = 0.3,
   label = '',
 }: PlaceholderProps): ReactElement {
   return (
