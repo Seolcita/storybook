@@ -6,6 +6,7 @@ import Typography from '../atomic/Typography';
 type PlaceholderProps = {
   color?: Colors;
   width?: number;
+  isFullWidth?: boolean;
   height?: number;
   borderRadius?: number;
   label?: string;
@@ -14,24 +15,25 @@ type PlaceholderProps = {
 type StyledPlaceholderProps = {
   bgcolor: ColorVariant;
   width: PlaceholderProps['width'];
+  isFullWidth: PlaceholderProps['isFullWidth'];
   height: PlaceholderProps['height'];
   borderRadius: PlaceholderProps['borderRadius'];
 };
 
 export const StyledPlaceholder = styled.div<StyledPlaceholderProps>`
-background-color: ${({ bgcolor }) => bgcolor.extraLight};
-width: ${({ width }) => `${width}rem`}
-height: ${({ height }) => `${height}rem`}
-border: ${({ bgcolor }) => `0.1rem solid ${bgcolor.main}`};
-border-radius: ${({ borderRadius }) => `${borderRadius}rem`};
-padding: 1rem;
-margin: 0.5rem;
+  background-color: ${({ bgcolor }) => bgcolor.extraLight};
+  width: ${({ width, isFullWidth }) => (isFullWidth ? '100%' : `${width}rem`)};
+  height: ${({ height }) => `${height}rem`};
+  border-radius: ${({ borderRadius }) => `${borderRadius}rem`};
+  padding: 1rem;
+  // margin: 0.5rem;
 `;
 
 function Placeholder({
   color = 'grey',
-  height = 0.3,
-  width = 0.3,
+  height = 3,
+  width = 3,
+  isFullWidth = false,
   borderRadius = 0.3,
   label = '',
 }: PlaceholderProps): ReactElement {
@@ -39,6 +41,7 @@ function Placeholder({
     <StyledPlaceholder
       bgcolor={ColorMap[color]}
       width={width}
+      isFullWidth={isFullWidth}
       height={height}
       borderRadius={borderRadius}
     >

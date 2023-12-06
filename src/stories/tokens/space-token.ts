@@ -1,8 +1,8 @@
 export type Space = {
   xs: string;
-  s: string;
-  m: string;
-  l: string;
+  sm: string;
+  md: string;
+  lg: string;
   xl: string;
   xxl: string;
   none: string;
@@ -10,9 +10,9 @@ export type Space = {
 
 export const space: Space = {
   xs: '0.2rem',
-  s: '0.4rem',
-  m: '0.8rem',
-  l: '1.6rem',
+  sm: '0.4rem',
+  md: '0.8rem',
+  lg: '1.6rem',
   xl: '3.2rem',
   xxl: '6.4rem',
   none: '0',
